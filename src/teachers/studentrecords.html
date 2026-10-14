@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Records</title>
+</head>
+
+<body class="min-h-screen bg-slate-50">
+
+    <div class="flex min-h-screen">
+
+        <div id="staff-sidebar-container"></div>
+
+        <div class="flex min-w-0 flex-1 flex-col">
+
+            <header id="staff-header"></header>
+
+            <main id="student-records-page" class="flex-1 p-4 md:p-6">
+
+                <div class="mx-auto max-w-7xl">
+
+                    <div class="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+                        <div>
+                            <h1 id="student-records-title" class="text-2xl font-bold text-slate-900">Student Records</h1>
+                            <p class="mt-1 text-sm text-slate-500">View students allocated to your teaching units.</p>
+                        </div>
+
+                        <button id="download-student-list" type="button" class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <i class="fa-solid fa-download"></i>
+                            Download List
+                        </button>
+                    </div>
+
+                    <section id="unit-selection-card" class="mb-6 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+
+                        <div class="mb-4">
+                            <h2 class="text-lg font-semibold text-slate-900">Select Teaching Unit</h2>
+                            <p class="text-sm text-slate-500">Choose one of your allocated units to view its students.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+
+                            <div>
+                                <label for="unit-select" class="mb-2 block text-sm font-medium text-slate-700">Allocated Unit</label>
+                                <select id="unit-select" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                                    <option value="">Select a unit</option>
+                                    <option value="bit1101">BIT 1101 - Introduction to Programming</option>
+                                    <option value="bit1102">BIT 1102 - Computer Systems</option>
+                                    <option value="bit1103">BIT 1103 - Computer Communication</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="semester-select" class="mb-2 block text-sm font-medium text-slate-700">Semester</label>
+                                <select id="semester-select" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                                    <option value="semester-one">Semester One</option>
+                                    <option value="semester-two">Semester Two</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="academic-year-select" class="mb-2 block text-sm font-medium text-slate-700">Academic Year</label>
+                                <select id="academic-year-select" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                                    <option value="2026">2026 / 2027</option>
+                                    <option value="2025">2025 / 2026</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <button id="load-students-button" type="button" class="mt-4 rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500">
+                            Load Students
+                        </button>
+
+                    </section>
+
+                    <section id="unit-summary" class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+                        <div id="selected-unit-card" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                            <p class="text-sm text-slate-500">Selected Unit</p>
+                            <h3 id="selected-unit-name" class="mt-2 font-semibold text-slate-900">—</h3>
+                            <p id="selected-unit-code" class="mt-1 text-xs text-slate-500">—</p>
+                        </div>
+
+                        <div id="program-card" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                            <p class="text-sm text-slate-500">Program</p>
+                            <h3 id="program-name" class="mt-2 font-semibold text-slate-900">BSc Information Technology</h3>
+                        </div>
+
+                        <div id="class-year-card" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                            <p class="text-sm text-slate-500">Class</p>
+                            <h3 id="class-year" class="mt-2 font-semibold text-slate-900">Year 1</h3>
+                        </div>
+
+                        <div id="student-count-card" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                            <p class="text-sm text-slate-500">Allocated Students</p>
+                            <h3 id="student-count" class="mt-2 text-2xl font-bold text-blue-600">0</h3>
+                        </div>
+
+                    </section>
+
+                    <section id="student-list-card" class="rounded-xl border border-slate-200 bg-white shadow-sm">
+
+                        <div class="flex flex-col gap-4 border-b border-slate-200 p-5 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <h2 class="text-lg font-semibold text-slate-900">Student List</h2>
+                                <p id="student-list-description" class="mt-1 text-sm text-slate-500">Select a unit to display students.</p>
+                            </div>
+
+                            <div class="relative w-full sm:w-72">
+                                <input id="student-search" type="search" placeholder="Search student..." class="w-full rounded-lg border border-slate-300 px-3 py-2.5 pl-10 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto">
+
+                            <table id="student-records-table" class="min-w-[800px] w-full text-left text-sm">
+
+                                <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+                                    <tr>
+                                        <th class="px-5 py-3 font-semibold">No.</th>
+                                        <th class="px-5 py-3 font-semibold">Student ID</th>
+                                        <th class="px-5 py-3 font-semibold">Student Name</th>
+                                        <th class="px-5 py-3 font-semibold">Program</th>
+                                        <th class="px-5 py-3 font-semibold">Year</th>
+                                        <th class="px-5 py-3 font-semibold">Status</th>
+                                        <th class="px-5 py-3 text-right font-semibold">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="student-records-body" class="divide-y divide-slate-200">
+
+                                    <tr id="student-row-001" class="hover:bg-slate-50">
+                                        <td class="px-5 py-4 text-slate-500">1</td>
+                                        <td id="student-id-001" class="px-5 py-4 font-medium text-slate-700">TUM/001/2026</td>
+                                        <td id="student-name-001" class="px-5 py-4 font-medium text-slate-900">John Mwangi</td>
+                                        <td class="px-5 py-4 text-slate-600">BSc IT</td>
+                                        <td class="px-5 py-4 text-slate-600">Year 1</td>
+                                        <td class="px-5 py-4">
+                                            <span id="student-status-001" class="inline-flex rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">Active</span>
+                                        </td>
+                                        <td class="px-5 py-4 text-right">
+                                            <a id="view-student-001" href="#" class="font-medium text-blue-600 hover:text-blue-800">View</a>
+                                        </td>
+                                    </tr>
+
+                                    <tr id="student-row-002" class="hover:bg-slate-50">
+                                        <td class="px-5 py-4 text-slate-500">2</td>
+                                        <td id="student-id-002" class="px-5 py-4 font-medium text-slate-700">TUM/002/2026</td>
+                                        <td id="student-name-002" class="px-5 py-4 font-medium text-slate-900">Mary Wanjiku</td>
+                                        <td class="px-5 py-4 text-slate-600">BSc IT</td>
+                                        <td class="px-5 py-4 text-slate-600">Year 1</td>
+                                        <td class="px-5 py-4">
+                                            <span id="student-status-002" class="inline-flex rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">Active</span>
+                                        </td>
+                                        <td class="px-5 py-4 text-right">
+                                            <a id="view-student-002" href="#" class="font-medium text-blue-600 hover:text-blue-800">View</a>
+                                        </td>
+                                    </tr>
+
+                                    <tr id="student-row-003" class="hover:bg-slate-50">
+                                        <td class="px-5 py-4 text-slate-500">3</td>
+                                        <td id="student-id-003" class="px-5 py-4 font-medium text-slate-700">TUM/003/2026</td>
+                                        <td id="student-name-003" class="px-5 py-4 font-medium text-slate-900">Brian Otieno</td>
+                                        <td class="px-5 py-4 text-slate-600">BSc IT</td>
+                                        <td class="px-5 py-4 text-slate-600">Year 1</td>
+                                        <td class="px-5 py-4">
+                                            <span id="student-status-003" class="inline-flex rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">Active</span>
+                                        </td>
+                                        <td class="px-5 py-4 text-right">
+                                            <a id="view-student-003" href="#" class="font-medium text-blue-600 hover:text-blue-800">View</a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <div id="student-records-footer" class="border-t border-slate-200 px-5 py-4">
+                            <p id="records-footer-text" class="text-sm text-slate-500">Showing allocated students</p>
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </main>
+
+            <div id="dashboard-footer"></div>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="/src/js/main.js"></script>
+    <script type="module" src="/src/js/studentrecords.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Timetable</title>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+    <div id="dashboard-layout" class="min-h-screen lg:flex">
+
+        <!-- Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <!-- Dashboard Content -->
+        <div id="dashboard-content" class="flex min-w-0 flex-1 flex-col">
+
+            <!-- Header -->
+            <header id="dashboard-header"></head>
+              <header id="dashboard-header"></header>
+            <!-- Main Content -->
+            <main id="dashboard-main" class="flex-1 p-4 md:p-6 lg:p-8">
+
+                <!-- Page Heading -->
+                <section id="timetable-heading" class="mb-6">
+                    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+                        <div>
+                            <p class="text-sm font-semibold uppercase tracking-wider text-blue-600">Academic Schedule</p>
+                            <h1 class="mt-1 text-2xl font-bold text-slate-900 sm:text-3xl">Class Timetable</h1>
+                            <p class="mt-2 text-sm text-slate-500">View your weekly classes, lecturers, rooms, and class times.</p>
+                        </div>
+
+                        <!-- Download Button -->
+                        <button id="download-timetable-button" type="button" class="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <i class="fa-solid fa-download"></i>
+                            Download Timetable
+                        </button>
+
+                    </div>
+                </section>
+
+
+                <!-- Semester / Academic Information -->
+                <section id="timetable-summary" class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+
+                    <div id="current-semester-card" class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+                                <i class="fa-solid fa-calendar"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Semester</p>
+                                <p id="current-semester" class="mt-1 font-bold text-slate-800">2nd Semester</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="total-classes-card" class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Weekly Classes</p>
+                                <p id="total-weekly-classes" class="mt-1 font-bold text-slate-800">12 Classes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="next-class-card" class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Next Class</p>
+                                <p id="next-class" class="mt-1 font-bold text-slate-800">Web Development</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+
+                <!-- Timetable Card -->
+                <section id="timetable-card" class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+                    <!-- Card Header -->
+                    <div id="timetable-card-header" class="flex flex-col gap-3 border-b border-slate-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900">Weekly Class Schedule</h2>
+                            <p class="mt-1 text-sm text-slate-500">Monday to Friday class timetable</p>
+                        </div>
+
+                        <span id="timetable-status" class="inline-flex w-fit items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+                            <span class="h-2 w-2 rounded-full bg-green-500"></span>
+                            Current Timetable
+                        </span>
+
+                    </div>
+
+
+                    <!-- Responsive Table -->
+                    <div id="timetable-table-container" class="overflow-x-auto">
+
+                        <table id="class-timetable" class="min-w-[900px] w-full text-left text-sm">
+
+                            <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+                                <tr>
+                                    <th id="time-column" class="px-5 py-4 font-semibold">Time</th>
+                                    <th id="monday-column" class="px-5 py-4 font-semibold">Monday</th>
+                                    <th id="tuesday-column" class="px-5 py-4 font-semibold">Tuesday</th>
+                                    <th id="wednesday-column" class="px-5 py-4 font-semibold">Wednesday</th>
+                                    <th id="thursday-column" class="px-5 py-4 font-semibold">Thursday</th>
+                                    <th id="friday-column" class="px-5 py-4 font-semibold">Friday</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="divide-y divide-slate-100">
+
+                                <!-- 8:00 AM -->
+                                <tr id="timetable-row-0800" class="hover:bg-slate-50">
+                                    <td class="whitespace-nowrap px-5 py-4 font-semibold text-slate-700">8:00 - 10:00</td>
+
+                                    <td id="monday-0800" class="px-5 py-4">
+                                        <div class="rounded-xl bg-blue-50 p-3">
+                                            <p class="font-bold text-blue-700">Web Development</p>
+                                            <p class="mt-1 text-xs text-slate-500">Dr. Munene</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Room 201</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="tuesday-0800" class="px-5 py-4">
+                                        <div class="rounded-xl bg-purple-50 p-3">
+                                            <p class="font-bold text-purple-700">Computer Networks</p>
+                                            <p class="mt-1 text-xs text-slate-500">Mr. Otieno</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Lab 2</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="wednesday-0800" class="px-5 py-4">
+                                        <div class="rounded-xl bg-emerald-50 p-3">
+                                            <p class="font-bold text-emerald-700">Database Systems</p>
+                                            <p class="mt-1 text-xs text-slate-500">Ms. Amina</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Room 104</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="thursday-0800" class="px-5 py-4">
+                                        <div class="rounded-xl bg-orange-50 p-3">
+                                            <p class="font-bold text-orange-700">Operating Systems</p>
+                                            <p class="mt-1 text-xs text-slate-500">Mr. Kamau</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Room 203</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="friday-0800" class="px-5 py-4">
+                                        <div class="rounded-xl bg-pink-50 p-3">
+                                            <p class="font-bold text-pink-700">Discrete Structures</p>
+                                            <p class="mt-1 text-xs text-slate-500">Dr. Hassan</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Room 105</p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <!-- 10:00 AM -->
+                                <tr id="timetable-row-1000" class="hover:bg-slate-50">
+                                    <td class="whitespace-nowrap px-5 py-4 font-semibold text-slate-700">10:00 - 12:00</td>
+
+                                    <td id="monday-1000" class="px-5 py-4">
+                                        <div class="rounded-xl bg-purple-50 p-3">
+                                            <p class="font-bold text-purple-700">Computer Networks</p>
+                                            <p class="mt-1 text-xs text-slate-500">Mr. Otieno</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Lab 2</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="tuesday-1000" class="px-5 py-4">
+                                        <div class="rounded-xl bg-slate-100 p-3">
+                                            <p class="font-bold text-slate-600">Free Period</p>
+                                            <p class="mt-1 text-xs text-slate-400">No class scheduled</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="wednesday-1000" class="px-5 py-4">
+                                        <div class="rounded-xl bg-orange-50 p-3">
+                                            <p class="font-bold text-orange-700">Operating Systems</p>
+                                            <p class="mt-1 text-xs text-slate-500">Mr. Kamau</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Room 203</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="thursday-1000" class="px-5 py-4">
+                                        <div class="rounded-xl bg-slate-100 p-3">
+                                            <p class="font-bold text-slate-600">Free Period</p>
+                                            <p class="mt-1 text-xs text-slate-400">No class scheduled</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="friday-1000" class="px-5 py-4">
+                                        <div class="rounded-xl bg-blue-50 p-3">
+                                            <p class="font-bold text-blue-700">Web Development</p>
+                                            <p class="mt-1 text-xs text-slate-500">Dr. Munene</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Room 201</p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <!-- 12:00 PM -->
+                                <tr id="timetable-row-1200" class="hover:bg-slate-50">
+                                    <td class="whitespace-nowrap px-5 py-4 font-semibold text-slate-700">12:00 - 2:00</td>
+
+                                    <td id="monday-1200" class="px-5 py-4">
+                                        <div class="rounded-xl bg-slate-100 p-3">
+                                            <p class="font-bold text-slate-600">Lunch Break</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="tuesday-1200" class="px-5 py-4">
+                                        <div class="rounded-xl bg-emerald-50 p-3">
+                                            <p class="font-bold text-emerald-700">Database Systems</p>
+                                            <p class="mt-1 text-xs text-slate-500">Ms. Amina</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Room 104</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="wednesday-1200" class="px-5 py-4">
+                                        <div class="rounded-xl bg-slate-100 p-3">
+                                            <p class="font-bold text-slate-600">Lunch Break</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="thursday-1200" class="px-5 py-4">
+                                        <div class="rounded-xl bg-pink-50 p-3">
+                                            <p class="font-bold text-pink-700">Discrete Structures</p>
+                                            <p class="mt-1 text-xs text-slate-500">Dr. Hassan</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Room 105</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="friday-1200" class="px-5 py-4">
+                                        <div class="rounded-xl bg-slate-100 p-3">
+                                            <p class="font-bold text-slate-600">Lunch Break</p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <!-- 2:00 PM -->
+                                <tr id="timetable-row-1400" class="hover:bg-slate-50">
+                                    <td class="whitespace-nowrap px-5 py-4 font-semibold text-slate-700">2:00 - 4:00</td>
+
+                                    <td id="monday-1400" class="px-5 py-4">
+                                        <div class="rounded-xl bg-indigo-50 p-3">
+                                            <p class="font-bold text-indigo-700">Programming</p>
+                                            <p class="mt-1 text-xs text-slate-500">Mr. Mwangi</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Lab 1</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="tuesday-1400" class="px-5 py-4">
+                                        <div class="rounded-xl bg-blue-50 p-3">
+                                            <p class="font-bold text-blue-700">Web Development</p>
+                                            <p class="mt-1 text-xs text-slate-500">Dr. Munene</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Room 201</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="wednesday-1400" class="px-5 py-4">
+                                        <div class="rounded-xl bg-indigo-50 p-3">
+                                            <p class="font-bold text-indigo-700">Programming</p>
+                                            <p class="mt-1 text-xs text-slate-500">Mr. Mwangi</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Lab 1</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="thursday-1400" class="px-5 py-4">
+                                        <div class="rounded-xl bg-purple-50 p-3">
+                                            <p class="font-bold text-purple-700">Computer Networks</p>
+                                            <p class="mt-1 text-xs text-slate-500">Mr. Otieno</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Lab 2</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="friday-1400" class="px-5 py-4">
+                                        <div class="rounded-xl bg-slate-100 p-3">
+                                            <p class="font-bold text-slate-600">Free Period</p>
+                                            <p class="mt-1 text-xs text-slate-400">No class scheduled</p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <!-- 4:00 PM -->
+                                <tr id="timetable-row-1600" class="hover:bg-slate-50">
+                                    <td class="whitespace-nowrap px-5 py-4 font-semibold text-slate-700">4:00 - 6:00</td>
+
+                                    <td id="monday-1600" class="px-5 py-4">
+                                        <div class="rounded-xl bg-slate-100 p-3">
+                                            <p class="font-bold text-slate-600">Free Period</p>
+                                            <p class="mt-1 text-xs text-slate-400">No class scheduled</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="tuesday-1600" class="px-5 py-4">
+                                        <div class="rounded-xl bg-orange-50 p-3">
+                                            <p class="font-bold text-orange-700">Operating Systems</p>
+                                            <p class="mt-1 text-xs text-slate-500">Mr. Kamau</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Room 203</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="wednesday-1600" class="px-5 py-4">
+                                        <div class="rounded-xl bg-slate-100 p-3">
+                                            <p class="font-bold text-slate-600">Free Period</p>
+                                            <p class="mt-1 text-xs text-slate-400">No class scheduled</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="thursday-1600" class="px-5 py-4">
+                                        <div class="rounded-xl bg-slate-100 p-3">
+                                            <p class="font-bold text-slate-600">Free Period</p>
+                                            <p class="mt-1 text-xs text-slate-400">No class scheduled</p>
+                                        </div>
+                                    </td>
+
+                                    <td id="friday-1600" class="px-5 py-4">
+                                        <div class="rounded-xl bg-emerald-50 p-3">
+                                            <p class="font-bold text-emerald-700">Database Systems</p>
+                                            <p class="mt-1 text-xs text-slate-500">Ms. Amina</p>
+                                            <p class="mt-1 text-xs font-medium text-slate-600">Room 104</p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Timetable Note -->
+                <section id="timetable-note" class="mt-6 rounded-2xl border border-blue-100 bg-blue-50 p-5">
+                    <div class="flex gap-3">
+                        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-blue-900">Timetable Information</h3>
+                            <p class="mt-1 text-sm text-blue-700">
+                                Please check your timetable regularly for room changes, cancelled classes, or updated schedules.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- Footer -->
+            <footer id="dashboard-footer"></footer>
+
+        </div>
+    </div>
+
+
+    <!-- Main JavaScript -->
+    <script type="module" src="/src/js/main.js"></script>
+
+    <!-- Timetable Download -->
+    <script type="module">
+
+        const downloadButton = document.getElementById("download-timetable-button");
+
+        downloadButton.addEventListener("click", () => {
+
+            const timetable = document.getElementById("class-timetable");
+
+            const timetableWindow = window.open("", "_blank");
+
+            timetableWindow.document.write(`
+                <!doctype html>
+                <html>
+                <head>
+                    <title>Student Class Timetable</title>
+
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            padding: 30px;
+                            color: #111827;
+                        }
+
+                        h1 {
+                            text-align: center;
+                            margin-bottom: 5px;
+                        }
+
+                        p {
+                            text-align: center;
+                            color: #6b7280;
+                            margin-bottom: 25px;
+                        }
+
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                        }
+
+                        th,
+                        td {
+                            border: 1px solid #d1d5db;
+                            padding: 12px;
+                            text-align: left;
+                            vertical-align: top;
+                        }
+
+                        th {
+                            background: #f1f5f9;
+                            font-weight: bold;
+                        }
+
+                        .free-period {
+                            color: #6b7280;
+                        }
+
+                        @media print {
+                            body {
+                                padding: 10px;
+                            }
+                        }
+                    </style>
+                </head>
+
+                <body>
+
+                    <h1>Student Class Timetable</h1>
+
+                    <p>
+                        John Munene | BSc in Computer Science | 2nd Semester
+                    </p>
+
+                    ${timetable.outerHTML}
+
+                    <script>
+                        window.onload = function() {
+                            window.print();
+                        };
+                    <\/script>
+
+                </body>
+                </html>
+            `);
+
+            timetableWindow.document.close();
+
+        });
+
+    </script>
+    <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Recording</title>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+    <div id="dashboard-layout" class="min-h-screen lg:flex">
+
+        <!-- Sidebar -->
+       <div id="staff-sidebar-container"></div>
+
+        <!-- Dashboard Content -->
+        <div id="dashboard-content" class="flex min-w-0 flex-1 flex-col">
+
+            <!-- Staff Header -->
+            <header id="staff-header"></header>
+
+            <!-- Main Content -->
+            <main id="dashboard-main" class="flex-1 p-4 md:p-6 lg:p-8">
+
+                <!-- Page Heading -->
+                <section id="marks-heading" class="mb-6">
+
+                    <p class="text-sm font-semibold uppercase tracking-wider text-blue-600">
+                        Academic Management
+                    </p>
+
+                    <h1 class="mt-1 text-2xl font-bold text-slate-900 sm:text-3xl">
+                        Marks Recording
+                    </h1>
+
+                    <p class="mt-2 text-sm text-slate-500">
+                        Record and manage student assessment marks for your courses.
+                    </p>
+
+                </section>
+
+
+                <!-- Course Selection -->
+                <section id="marks-selection-card" class="mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+                    <div class="mb-5 flex items-center gap-3 border-b border-slate-100 pb-4">
+
+                        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                        </div>
+
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900">
+                                Assessment Details
+                            </h2>
+
+                            <p class="text-sm text-slate-500">
+                                Select the course and semester before recording marks.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div id="assessment-selection" class="grid grid-cols-1 gap-4 md:grid-cols-3">
+
+                        <!-- Course -->
+                        <div id="course-selection">
+
+                            <label for="course-select" class="mb-2 block text-sm font-medium text-slate-700">
+                                Course
+                            </label>
+
+                            <select id="course-select" class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+
+                                <option value="">Select course</option>
+                                <option value="web-development">Web Development</option>
+                                <option value="computer-networks">Computer Networks</option>
+                                <option value="database-systems">Database Systems</option>
+                                <option value="operating-systems">Operating Systems</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Semester -->
+                        <div id="semester-selection">
+
+                            <label for="semester-select" class="mb-2 block text-sm font-medium text-slate-700">
+                                Semester
+                            </label>
+
+                            <select id="semester-select" class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+
+                                <option value="">Select semester</option>
+                                <option value="semester-1">Semester 1</option>
+                                <option value="semester-2">Semester 2</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Academic Year -->
+                        <div id="academic-year-selection">
+
+                            <label for="academic-year-select" class="mb-2 block text-sm font-medium text-slate-700">
+                                Academic Year
+                            </label>
+
+                            <select id="academic-year-select" class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+
+                                <option value="2026-2027">2026 / 2027</option>
+                                <option value="2025-2026">2025 / 2026</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Load Students -->
+                    <div class="mt-5 flex justify-end">
+
+                        <button id="load-students-button" type="button" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <i class="fa-solid fa-users"></i>
+                            Load Students
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- Marks Recording -->
+                <section id="marks-recording-section" class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+                    <!-- Table Header -->
+                    <div id="marks-table-header" class="flex flex-col gap-3 border-b border-slate-200 px-5 py-4 md:flex-row md:items-center md:justify-between">
+
+                        <div>
+
+                            <h2 class="text-lg font-bold text-slate-900">
+                                Student Marks
+                            </h2>
+
+                            <p id="selected-course-name" class="mt-1 text-sm text-slate-500">
+                                No course selected
+                            </p>
+
+                        </div>
+
+
+                        <!-- Search -->
+                        <div id="student-search-container" class="relative">
+
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+
+                            <input id="student-search" type="search" placeholder="Search student..." class="w-full rounded-xl border border-slate-300 py-2.5 pl-9 pr-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 md:w-64">
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Table -->
+                    <div id="marks-table-container" class="overflow-x-auto">
+
+                        <table id="marks-table" class="min-w-[900px] w-full text-left text-sm">
+
+                            <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+
+                                <tr>
+
+                                    <th class="px-5 py-4 font-semibold">
+                                        #
+                                    </th>
+
+                                    <th class="px-5 py-4 font-semibold">
+                                        Student
+                                    </th>
+
+                                    <th class="px-5 py-4 font-semibold">
+                                        Student ID
+                                    </th>
+
+                                    <th class="px-5 py-4 font-semibold">
+                                        CAT / 30
+                                    </th>
+
+                                    <th class="px-5 py-4 font-semibold">
+                                        Exam / 70
+                                    </th>
+
+                                    <th class="px-5 py-4 font-semibold">
+                                        Total / 100
+                                    </th>
+
+                                    <th class="px-5 py-4 font-semibold">
+                                        Grade
+                                    </th>
+
+                                    <th class="px-5 py-4 text-right font-semibold">
+                                        Status
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="marks-table-body" class="divide-y divide-slate-100">
+
+                                <!-- Student 1 -->
+                                <tr id="student-row-001" class="transition hover:bg-slate-50">
+
+                                    <td class="px-5 py-4 font-medium text-slate-500">
+                                        1
+                                    </td>
+
+                                    <td class="px-5 py-4">
+
+                                        <div class="flex items-center gap-3">
+
+                                            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">
+                                                JM
+                                            </div>
+
+                                            <div>
+                                                <p id="student-name-001" class="font-semibold text-slate-800">
+                                                    John Munene
+                                                </p>
+
+                                                <p class="text-xs text-slate-400">
+                                                    BSc Computer Science
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
+                                    <td id="student-id-001" class="px-5 py-4 font-medium text-slate-600">
+                                        STU001
+                                    </td>
+
+                                    <td class="px-5 py-4">
+
+                                        <input id="cat-mark-001" type="number" min="0" max="30" placeholder="0 - 30" class="w-24 rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+
+                                    </td>
+
+                                    <td class="px-5 py-4">
+
+                                        <input id="exam-mark-001" type="number" min="0" max="70" placeholder="0 - 70" class="w-24 rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+
+                                    </td>
+
+                                    <td id="total-mark-001" class="px-5 py-4 font-bold text-slate-800">
+                                        —
+                                    </td>
+
+                                    <td id="grade-001" class="px-5 py-4 font-bold text-slate-700">
+                                        —
+                                    </td>
+
+                                    <td class="px-5 py-4 text-right">
+
+                                        <span id="status-001" class="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
+                                            Not Recorded
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- Student 2 -->
+                                <tr id="student-row-002" class="transition hover:bg-slate-50">
+
+                                    <td class="px-5 py-4 font-medium text-slate-500">
+                                        2
+                                    </td>
+
+                                    <td class="px-5 py-4">
+
+                                        <div class="flex items-center gap-3">
+
+                                            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-purple-100 text-xs font-bold text-purple-700">
+                                                AO
+                                            </div>
+
+                                            <div>
+                                                <p id="student-name-002" class="font-semibold text-slate-800">
+                                                    Alice Otieno
+                                                </p>
+
+                                                <p class="text-xs text-slate-400">
+                                                    BSc Computer Science
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
+                                    <td id="student-id-002" class="px-5 py-4 font-medium text-slate-600">
+                                        STU002
+                                    </td>
+
+                                    <td class="px-5 py-4">
+                                        <input id="cat-mark-002" type="number" min="0" max="30" placeholder="0 - 30" class="w-24 rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                                    </td>
+
+                                    <td class="px-5 py-4">
+                                        <input id="exam-mark-002" type="number" min="0" max="70" placeholder="0 - 70" class="w-24 rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                                    </td>
+
+                                    <td id="total-mark-002" class="px-5 py-4 font-bold text-slate-800">
+                                        —
+                                    </td>
+
+                                    <td id="grade-002" class="px-5 py-4 font-bold text-slate-700">
+                                        —
+                                    </td>
+
+                                    <td class="px-5 py-4 text-right">
+                                        <span id="status-002" class="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
+                                            Not Recorded
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- Student 3 -->
+                                <tr id="student-row-003" class="transition hover:bg-slate-50">
+
+                                    <td class="px-5 py-4 font-medium text-slate-500">
+                                        3
+                                    </td>
+
+                                    <td class="px-5 py-4">
+
+                                        <div class="flex items-center gap-3">
+
+                                            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">
+                                                BK
+                                            </div>
+
+                                            <div>
+                                                <p id="student-name-003" class="font-semibold text-slate-800">
+                                                    Brian Kamau
+                                                </p>
+
+                                                <p class="text-xs text-slate-400">
+                                                    BSc Computer Science
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
+                                    <td id="student-id-003" class="px-5 py-4 font-medium text-slate-600">
+                                        STU003
+                                    </td>
+
+                                    <td class="px-5 py-4">
+                                        <input id="cat-mark-003" type="number" min="0" max="30" placeholder="0 - 30" class="w-24 rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                                    </td>
+
+                                    <td class="px-5 py-4">
+                                        <input id="exam-mark-003" type="number" min="0" max="70" placeholder="0 - 70" class="w-24 rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                                    </td>
+
+                                    <td id="total-mark-003" class="px-5 py-4 font-bold text-slate-800">
+                                        —
+                                    </td>
+
+                                    <td id="grade-003" class="px-5 py-4 font-bold text-slate-700">
+                                        —
+                                    </td>
+
+                                    <td class="px-5 py-4 text-right">
+                                        <span id="status-003" class="inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500">
+                                            Not Recorded
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                    <!-- Bottom Actions -->
+                    <div id="marks-actions" class="flex flex-col gap-3 border-t border-slate-200 bg-slate-50 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+
+                        <p id="marks-help-text" class="text-sm text-slate-500">
+                            Enter CAT and examination marks for each student.
+                        </p>
+
+                        <button id="save-marks-button" type="button" class="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Marks
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+            <!-- Footer -->
+            <footer id="dashboard-footer"></footer>
+
+        </div>
+
+    </div>
+
+
+    <!-- Staff Main -->
+    <script type="module" src="/src/js/Main.js"></script>
+    <script>
+       
+const students = ["001", "002", "003"];
+
+students.forEach((studentId) => {
+
+    const catInput = document.getElementById(`cat-mark-${studentId}`);
+    const examInput = document.getElementById(`exam-mark-${studentId}`);
+
+    const totalDisplay = document.getElementById(`total-mark-${studentId}`);
+    const gradeDisplay = document.getElementById(`grade-${studentId}`);
+    const statusDisplay = document.getElementById(`status-${studentId}`);
+
+    function calculateMarks() {
+
+        const cat = Number(catInput.value);
+        const exam = Number(examInput.value);
+
+        if (catInput.value === "" || examInput.value === "") {
+            totalDisplay.textContent = "—";
+            gradeDisplay.textContent = "—";
+
+            statusDisplay.textContent = "Not Recorded";
+            statusDisplay.className = "inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-500";
+
+            return;
+        }
+
+        const total = cat + exam;
+
+        totalDisplay.textContent = total;
+
+        let grade;
+
+        if (total >= 70) {
+            grade = "A";
+        } else if (total >= 60) {
+            grade = "B";
+        } else if (total >= 50) {
+            grade = "C";
+        } else if (total >= 40) {
+            grade = "D";
+        } else {
+            grade = "F";
+        }
+
+        gradeDisplay.textContent = grade;
+
+        statusDisplay.textContent = "Recorded";
+        statusDisplay.className = "inline-flex rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700";
+    }
+
+    catInput.addEventListener("input", calculateMarks);
+    examInput.addEventListener("input", calculateMarks);
+
+});
+    </script>
+          <footer id="dashboard-footer"></footer>
+
+ 
+
+
+<script type="module" src="/src/js/main.js"></script>
+
+</body>
+</html>
+

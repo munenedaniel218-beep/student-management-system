@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Attendance</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.2.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-100">
+
+
+<script type="module" src="/src/js/main.js"></script>
+<div id="sidebar-container"></div>
+
+<header id="dashboard-header-inner"></header>
+<header id="dashboard-header"></header>
+  <!-- INTRO BANNER -->
+   <div class="p-4 text-center">
+    <h2 class="text-bold text-gray-500 ">Class Attendance</h2>
+   </div>
+  <section class="max-w-5xl mx-auto">
+   <!-- <div class="bg-linear-to-r from-green-600 to-teal-600 text-white rounded-lg shadow p-6 mb-8 flex items-center gap-4">
+      <i class="fa-solid fa-user-check text-4xl"></i>
+      <div>
+        <h2 class="text-2xl font-bold">Attendance Record</h2>
+        <p class="mt-2 text-sm">Track your presence across all units and semesters.</p>
+      </div>
+    </div>-->
+
+    <!-- SUMMARY CARDS -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-white shadow rounded-lg p-6 text-center hover:shadow-lg transition">
+        <h3 class="text-lg font-bold text-gray-800">Total Classes</h3>
+        <p class="text-2xl font-bold text-blue-600 mt-2">45</p>
+      </div>
+      <div class="bg-white shadow rounded-lg p-6 text-center hover:shadow-lg transition">
+        <h3 class="text-lg font-bold text-gray-800">Attended</h3>
+        <p class="text-2xl font-bold text-green-600 mt-2">40</p>
+      </div>
+      <div class="bg-white shadow rounded-lg p-6 text-center hover:shadow-lg transition">
+        <h3 class="text-lg font-bold text-gray-800">Missed</h3>
+        <p class="text-2xl font-bold text-red-600 mt-2">5</p>
+      </div>
+    </div>
+
+    <!-- ATTENDANCE TABLE -->
+    <div class="bg-white shadow rounded-lg p-6">
+      <h3 class="text-lg font-bold text-gray-800 mb-4">Unit Attendance</h3>
+      <table class="w-full text-sm text-left text-gray-700">
+        <thead class="bg-gray-100 text-gray-800">
+          <tr>
+            <th class="px-4 py-2">Unit Name</th>
+            <th class="px-4 py-2">Unit Code</th>
+            <th class="px-4 py-2">Lecturer</th>
+            <th class="px-4 py-2">Classes Held</th>
+            <th class="px-4 py-2">Attended</th>
+            <th class="px-4 py-2">Missed</th>
+            <th class="px-4 py-2">Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b">
+            <td class="px-4 py-2">Web Development</td>
+            <td class="px-4 py-2">IT201</td>
+            <td class="px-4 py-2">Mr. Kamau</td>
+            <td class="px-4 py-2">12</td>
+            <td class="px-4 py-2 text-green-600">11</td>
+            <td class="px-4 py-2 text-red-600">1</td>
+            <td class="px-4 py-2 font-semibold">92%</td>
+          </tr>
+          <tr class="border-b">
+            <td class="px-4 py-2">Cyber Security</td>
+            <td class="px-4 py-2">IT305</td>
+            <td class="px-4 py-2">Ms. Achieng</td>
+            <td class="px-4 py-2">10</td>
+            <td class="px-4 py-2 text-green-600">9</td>
+            <td class="px-4 py-2 text-red-600">1</td>
+            <td class="px-4 py-2 font-semibold">90%</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">Database Systems</td>
+            <td class="px-4 py-2">IT210</td>
+            <td class="px-4 py-2">Dr. Mwangi</td>
+            <td class="px-4 py-2">8</td>
+            <td class="px-4 py-2 text-green-600">7</td>
+            <td class="px-4 py-2 text-red-600">1</td>
+            <td class="px-4 py-2 font-semibold">87%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+ <footer id="dashboard-footer"></footer>
+<script type="module" src="/src/js/main.js"></script>
+<script src="sidebar.js"></script>
+</body>
+</html>

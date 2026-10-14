@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100">
+
+    <main class="max-w-4xl mx-auto p-6">
+
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-slate-900">
+                Student Registration
+            </h1>
+
+            <p class="text-sm text-slate-500 mt-1">
+                Register a new student
+            </p>
+        </div>
+
+        <form id="student-form" class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <div>
+                    <label for="admission-number" class="block text-sm font-medium text-slate-700 mb-1">
+                        Admission Number
+                    </label>
+
+                    <input
+                        id="admission-number"
+                        type="text"
+                        placeholder="ST004"
+                        class="w-full rounded-lg border border-slate-300 px-4 py-2.5 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    >
+                </div>
+
+                <div>
+                    <label for="full-name" class="block text-sm font-medium text-slate-700 mb-1">
+                        Full Name
+                    </label>
+
+                    <input
+                        id="full-name"
+                        type="text"
+                        placeholder="David Kamau"
+                        class="w-full rounded-lg border border-slate-300 px-4 py-2.5 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    >
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-slate-700 mb-1">
+                        Email
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="student@example.com"
+                        class="w-full rounded-lg border border-slate-300 px-4 py-2.5 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    >
+                </div>
+
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-slate-700 mb-1">
+                        Phone Number
+                    </label>
+
+                    <input
+                        id="phone"
+                        type="tel"
+                        placeholder="0712345678"
+                        class="w-full rounded-lg border border-slate-300 px-4 py-2.5 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    >
+                </div>
+
+                <div>
+                    <label for="course" class="block text-sm font-medium text-slate-700 mb-1">
+                        Course
+                    </label>
+
+                    <select
+                        id="course"
+                        class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    >
+                        <option value="">Select course</option>
+                        <option value="BSc Computer Science">BSc Computer Science</option>
+                        <option value="BSc Information Technology">BSc Information Technology</option>
+                        <option value="BSc Software Engineering">BSc Software Engineering</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="year" class="block text-sm font-medium text-slate-700 mb-1">
+                        Year of Study
+                    </label>
+
+                    <select
+                        id="year"
+                        class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    >
+                        <option value="">Select year</option>
+                        <option value="1">Year 1</option>
+                        <option value="2">Year 2</option>
+                        <option value="3">Year 3</option>
+                        <option value="4">Year 4</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="mt-6 flex justify-end">
+                <button
+                    id="register-button"
+                    type="submit"
+                    class="rounded-lg bg-blue-600 px-6 py-2.5 font-semibold text-white hover:bg-blue-700"
+                >
+                    Register Student
+                </button>
+            </div>
+
+            <p id="form-message" class="mt-4 text-sm"></p>
+
+        </form>
+
+    </main>
+
+    <script type="module" src="/src/js/students.js"></script>
+
+</body>
+</html>

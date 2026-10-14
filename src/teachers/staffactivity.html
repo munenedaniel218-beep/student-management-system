@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Activity</title>
+</head>
+
+<body class="min-h-screen bg-slate-50">
+
+    <div class="flex min-h-screen">
+
+        <div id="staff-sidebar-container"></div>
+
+        <div class="flex min-w-0 flex-1 flex-col">
+
+            <header id="staff-header"></header>
+
+            <main id="student-records-page" class="flex-1 p-4 md:p-6">
+        <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900">Staff Activity</h1>
+                <p class="mt-1 text-sm text-slate-500">View your recent activities and account activity.</p>
+            </div>
+
+            <button id="download-activity-report" type="button" class="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                Download Activity Report
+            </button>
+        </div>
+
+        <section id="activity-summary" class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+            <div id="today-activities-card" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                <p class="text-sm font-medium text-slate-500">Today's Activities</p>
+                <h2 id="today-activities" class="mt-2 text-2xl font-bold text-slate-900">8</h2>
+                <p class="mt-1 text-xs text-slate-500">Actions completed today</p>
+            </div>
+
+            <div id="weekly-activities-card" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                <p class="text-sm font-medium text-slate-500">This Week</p>
+                <h2 id="weekly-activities" class="mt-2 text-2xl font-bold text-slate-900">34</h2>
+                <p class="mt-1 text-xs text-slate-500">Activities this week</p>
+            </div>
+
+            <div id="marks-recorded-card" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                <p class="text-sm font-medium text-slate-500">Marks Recorded</p>
+                <h2 id="marks-recorded" class="mt-2 text-2xl font-bold text-slate-900">96</h2>
+                <p class="mt-1 text-xs text-slate-500">Student marks processed</p>
+            </div>
+
+            <div id="last-login-card" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                <p class="text-sm font-medium text-slate-500">Last Login</p>
+                <h2 id="last-login" class="mt-2 text-lg font-bold text-slate-900">Today, 8:42 AM</h2>
+                <p class="mt-1 text-xs text-green-600">Successful login</p>
+            </div>
+
+        </section>
+
+        <section id="activity-filters" class="mb-6 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+
+                <div>
+                    <label for="activity-type-filter" class="mb-1.5 block text-sm font-medium text-slate-700">Activity Type</label>
+                    <select id="activity-type-filter" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                        <option value="all">All Activities</option>
+                        <option value="marks">Marks</option>
+                        <option value="students">Student Records</option>
+                        <option value="courses">Courses</option>
+                        <option value="assignments">Assignments</option>
+                        <option value="attendance">Attendance</option>
+                        <option value="announcements">Announcements</option>
+                        <option value="profile">Profile</option>
+                        <option value="login">Login / Logout</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="activity-date-filter" class="mb-1.5 block text-sm font-medium text-slate-700">Date</label>
+                    <select id="activity-date-filter" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                        <option value="all">All Dates</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+
+                <div class="md:col-span-2">
+                    <label for="activity-search" class="mb-1.5 block text-sm font-medium text-slate-700">Search Activity</label>
+                    <input id="activity-search" type="search" placeholder="Search activity, unit or description..." class="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                </div>
+
+            </div>
+
+        </section>
+
+        <section id="activity-list-section" class="mb-6 rounded-xl border border-slate-200 bg-white shadow-sm">
+
+            <div class="border-b border-slate-200 px-5 py-4">
+                <h2 class="font-semibold text-slate-900">Recent Activity</h2>
+                <p class="mt-1 text-xs text-slate-500">Your latest actions in the staff portal.</p>
+            </div>
+
+            <div id="activity-list" class="divide-y divide-slate-200">
+
+                <div id="activity-row-001" class="activity-row p-5" data-type="marks" data-date="today">
+                    <div class="flex gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-blue-600">M</div>
+
+                        <div class="min-w-0 flex-1">
+                            <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                                <h3 id="activity-title-001" class="font-semibold text-slate-900">Marks Recorded</h3>
+                                <span id="activity-time-001" class="text-xs text-slate-500">10:42 AM</span>
+                            </div>
+
+                            <p id="activity-description-001" class="mt-1 text-sm text-slate-600">Recorded CAT marks for 32 students.</p>
+
+                            <div class="mt-2 flex flex-wrap items-center gap-2">
+                                <span id="activity-unit-001" class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">BIT 1101</span>
+                                <span id="activity-status-001" class="rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-700">Successful</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="activity-row-002" class="activity-row p-5" data-type="students" data-date="today">
+                    <div class="flex gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-100 text-sm font-bold text-purple-600">S</div>
+
+                        <div class="min-w-0 flex-1">
+                            <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                                <h3 id="activity-title-002" class="font-semibold text-slate-900">Student Records Viewed</h3>
+                                <span id="activity-time-002" class="text-xs text-slate-500">9:35 AM</span>
+                            </div>
+
+                            <p id="activity-description-002" class="mt-1 text-sm text-slate-600">Viewed student records for an allocated teaching unit.</p>
+
+                            <div class="mt-2 flex flex-wrap items-center gap-2">
+                                <span id="activity-unit-002" class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">BIT 1103</span>
+                                <span id="activity-status-002" class="rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-700">Successful</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="activity-row-003" class="activity-row p-5" data-type="attendance" data-date="today">
+                    <div class="flex gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-100 text-sm font-bold text-orange-600">A</div>
+
+                        <div class="min-w-0 flex-1">
+                            <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                                <h3 id="activity-title-003" class="font-semibold text-slate-900">Attendance Recorded</h3>
+                                <span id="activity-time-003" class="text-xs text-slate-500">8:50 AM</span>
+                            </div>
+
+                            <p id="activity-description-003" class="mt-1 text-sm text-slate-600">Recorded attendance for Year 1 students.</p>
+
+                            <div class="mt-2 flex flex-wrap items-center gap-2">
+                                <span id="activity-unit-003" class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">BIT 1101</span>
+                                <span id="activity-status-003" class="rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-700">Successful</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="activity-row-004" class="activity-row p-5" data-type="login" data-date="today">
+                    <div class="flex gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-sm font-bold text-green-600">L</div>
+
+                        <div class="min-w-0 flex-1">
+                            <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                                <h3 id="activity-title-004" class="font-semibold text-slate-900">Login</h3>
+                                <span id="activity-time-004" class="text-xs text-slate-500">8:42 AM</span>
+                            </div>
+
+                            <p id="activity-description-004" class="mt-1 text-sm text-slate-600">Signed into the Staff Portal using Firefox on Windows.</p>
+
+                            <div class="mt-2 flex flex-wrap items-center gap-2">
+                                <span id="activity-unit-004" class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">Account Security</span>
+                                <span id="activity-status-004" class="rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-700">Successful</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="activity-row-005" class="activity-row p-5" data-type="assignments" data-date="yesterday">
+                    <div class="flex gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-pink-100 text-sm font-bold text-pink-600">A</div>
+
+                        <div class="min-w-0 flex-1">
+                            <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                                <h3 id="activity-title-005" class="font-semibold text-slate-900">Assignment Created</h3>
+                                <span id="activity-time-005" class="text-xs text-slate-500">Yesterday, 3:20 PM</span>
+                            </div>
+
+                            <p id="activity-description-005" class="mt-1 text-sm text-slate-600">Created a new programming assignment for students.</p>
+
+                            <div class="mt-2 flex flex-wrap items-center gap-2">
+                                <span id="activity-unit-005" class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">BIT 1102</span>
+                                <span id="activity-status-005" class="rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-700">Successful</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="activity-row-006" class="activity-row p-5" data-type="announcements" data-date="yesterday">
+                    <div class="flex gap-4">
+                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-yellow-100 text-sm font-bold text-yellow-600">N</div>
+
+                        <div class="min-w-0 flex-1">
+                            <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                                <h3 id="activity-title-006" class="font-semibold text-slate-900">Announcement Published</h3>
+                                <span id="activity-time-006" class="text-xs text-slate-500">Yesterday, 11:15 AM</span>
+                            </div>
+
+                            <p id="activity-description-006" class="mt-1 text-sm text-slate-600">Published an announcement for students in your unit.</p>
+
+                            <div class="mt-2 flex flex-wrap items-center gap-2">
+                                <span id="activity-unit-006" class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">BIT 1101</span>
+                                <span id="activity-status-006" class="rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-700">Successful</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="no-activity-message" class="hidden px-5 py-10 text-center">
+                <p class="font-medium text-slate-700">No activities found.</p>
+                <p class="mt-1 text-sm text-slate-500">Try changing your filters or search term.</p>
+            </div>
+
+        </section>
+
+        <section id="security-activity-card" class="rounded-xl border border-slate-200 bg-white shadow-sm">
+
+            <div class="border-b border-slate-200 px-5 py-4">
+                <h2 class="font-semibold text-slate-900">Login & Security Activity</h2>
+                <p class="mt-1 text-xs text-slate-500">Recent login activity for your account.</p>
+            </div>
+
+            <div class="divide-y divide-slate-200">
+
+                <div id="login-activity-001" class="flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <p class="font-medium text-slate-900">Today, 8:42 AM</p>
+                        <p class="mt-1 text-sm text-slate-500">Windows · Firefox · Staff Portal</p>
+                    </div>
+                    <span class="w-fit rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">Successful</span>
+                </div>
+
+                <div id="login-activity-002" class="flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <p class="font-medium text-slate-900">Yesterday, 7:58 AM</p>
+                        <p class="mt-1 text-sm text-slate-500">Windows · Firefox · Staff Portal</p>
+                    </div>
+                    <span class="w-fit rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">Successful</span>
+                </div>
+
+                <div id="login-activity-003" class="flex flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <p class="font-medium text-slate-900">Monday, 6:35 PM</p>
+                        <p class="mt-1 text-sm text-slate-500">Unknown device · Login attempt</p>
+                    </div>
+                    <span class="w-fit rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-700">Failed</span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <div id="dashboard-footer"></div>
+</div>
+
+<script type="module" src="/src/js/main.js"></script>
+<script type="module" src="/src/js/staffactivity.js"></script>
+```
+
+</body>
+</html>

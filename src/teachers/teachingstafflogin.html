@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>School System Login</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+<html lang="en">
+  </head>
+
+  <body id="login-page" class="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+    <main id="login-card" class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+      <!-- Top accent bar -->
+      <div class="h-1.5 bg-linear-to-r from-blue-600 via-green-500 to-orange-400"></div>
+
+      <div class="p-8">
+        <!-- Logo -->
+        <header id="login-header" class="flex flex-col items-center text-center mb-8">
+          <div id="school-logo" class="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-600/30">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3 2 8l10 5 10-5-10-5Z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 10.5V15c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M22 8v6" />
+            </svg>
+          </div>
+          <h1 id="school-name" class="mt-4 text-2xl font-bold text-slate-900">School System</h1>
+          <p id="login-subtitle" class="mt-1 text-sm text-slate-500">Sign in with your Staff number</p>
+        </header>
+
+        <form id="login-form" class="space-y-5" novalidate>
+          <!-- Adm No -->
+          <div id="adm-no-group">
+            <label for="adm-no" class="mb-1.5 block text-sm font-semibold text-slate-700">Staff Number</label>
+            <input
+              id="staff-no"
+              type="text"
+              autocomplete="username"
+              placeholder="Enter Staff number"
+              class="block w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/30"
+            />
+            <small id="staff-no-error class="mt-1 block min-h-5 text-sm text-orange-600"></small>
+          </div>
+
+          <!-- Password -->
+          <div id="password-group">
+            <label for="password" class="mb-1.5 block text-sm font-semibold text-slate-700">Password</label>
+            <div class="relative">
+              <input
+                id="password"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Enter your password"
+                class="block w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 pr-16 text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/30"
+              />
+              <button
+                id="toggle-password-button"
+                type="button"
+                class="absolute inset-y-0 right-0 px-4 text-sm font-medium text-slate-500 hover:text-blue-600"
+              >
+                Show
+              </button>
+            </div>
+            <small id="password-error" class="mt-1 block min-h-5 text-sm text-orange-600"></small>
+          </div>
+
+          <!-- Forgot password -->
+          <div id="forgot-password-row" class="flex items-center justify-between text-sm">
+            <span class="italic text-slate-500">Forgot password?</span>
+            <a id="reset-password-link" href="#" class="font-medium text-blue-600 hover:text-blue-700 hover:underline">Reset it here</a>
+          </div>
+
+          <!-- Button -->
+          <button
+            id="login-button"
+            type="submit"
+            class="w-full rounded-lg bg-blue-600 py-2.5 font-semibold text-white shadow-md shadow-blue-600/20 transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-blue-600"
+          >
+            Log in
+          </button>
+          <div class="text-center flex flex-col gap-2 bg-gray-300 rounded-2xl p-2 border-2 border-amber-600">
+          <small class=" font-semibold">Do not share your information with anyone.</small>
+          <small class="font-semibold">For assistance visit our office or contact the officials</small>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      const form = document.getElementById("login-form");
+      const staffnumber= document.getElementById("staff-no");
+      const staffNoError = document.getElementById("staff-no-error");
+      const password = document.getElementById("password");
+      const passwordError = document.getElementById("password-error");
+      const loginButton = document.getElementById("login-button");
+      const togglePasswordButton = document.getElementById("toggle-password-button");
+
+      // Start with the button disabled
+      loginButton.disabled = true;
+
+      function validateForm() {
+        let valid = true;
+
+        if (staffnumber.value.trim() === "") {
+          staffnumber.textContent = "Staff number is required";
+          valid = false;
+      //  }else if(!staffnumber.trim().value==staff001){
+        //  staffNoError.textContent="Enter valid login";
+        //  valid=false;
+        } 
+        else {
+          staffnumber.textContent = "";
+        }
+
+        if (password.value.length < 6) {
+          passwordError.textContent = "Password must be at least 6 characters";
+          valid = false;
+        } else {
+          passwordError.textContent = "";
+        }
+
+        loginButton.disabled = !valid;
+      }
+
+      // "input" also catches paste and autofill, unlike "keyup"
+      staffnumber.addEventListener("input", validateForm);
+      password.addEventListener("input", validateForm);
+
+      // Show / hide password
+      togglePasswordButton.addEventListener("click", () => {
+        const hidden = password.type === "password";
+        password.type = hidden ? "text" : "password";
+        togglePasswordButton.textContent = hidden ? "Hide" : "Show";
+      });
+
+      // Submit: go to the student dashboard
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        window.location.href = "/src/teachers/teachingstaffdashboard.html";
+         window.location.href = "/src/teachers/teachingstaffdashboard.html";
+       
+      });
+    </script>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

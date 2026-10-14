@@ -1,0 +1,533 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Staff Dashboard</title>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+<div id="dashboard-layout" class="min-h-screen lg:flex">
+
+    <!-- Sidebar -->
+<div id="staff-sidebar-container"></div>
+
+    <!-- Main dashboard area -->
+    <div id="dashboard-content" class="flex min-w-0 flex-1 flex-col">
+
+        <!-- Header -->
+        <header id="staff-header"></header>
+
+        <!-- Main -->
+        <main id="dashboard-main" class="flex-1 p-4 md:p-6 lg:p-8">
+
+            <!-- Welcome section -->
+            <section id="staff-welcome" class="mb-6 overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-blue-900 to-blue-700 p-6 text-white shadow-lg">
+
+                <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+
+                    <div>
+                        <p class="mb-1 text-sm font-medium text-blue-200">Teaching Staff Portal</p>
+
+                        <h1 class="text-2xl font-bold sm:text-3xl">
+                            Welcome, <span id="staff-name">Dr Munene</span>
+                        </h1>
+
+                        <p class="mt-2 max-w-2xl text-sm text-blue-100 sm:text-base">
+                            Do your work with integrity and keep your academic activities up to date.
+                        </p>
+                    </div>
+
+                    <div id="staff-status" class="w-fit rounded-full bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur">
+                        <span class="mr-2 inline-block h-2 w-2 rounded-full bg-green-400"></span>
+                        Active Staff
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- Current activity -->
+            <section id="current-activity-card" class="mb-6 rounded-2xl border border-blue-100 bg-white p-5 shadow-sm">
+
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">
+                            Current Activity
+                        </p>
+
+                        <h2 id="current-activity" class="mt-1 text-xl font-bold text-slate-900">
+                            CAT Marks Recording
+                        </h2>
+
+                        <p class="mt-1 text-sm text-slate-500">
+                            Course: <span id="current-course" class="font-medium text-slate-700">CIT200</span>
+                            · Deadline: <span id="activity-deadline" class="font-medium text-red-500">Today</span>
+                        </p>
+                    </div>
+
+                    <a id="continue-task-button" href="/src/teachers/taskview.html" class="inline-flex w-fit items-center justify-center rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Continue Task
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- Dashboard cards -->
+            <section id="staff-dashboard-cards" class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+
+
+                <!-- 1. Staff Profile -->
+                <a id="staff-profile-card" href="/src/teachers/staffprofile.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+
+                    <div class="flex items-start justify-between">
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">
+                                Staff
+                            </p>
+
+                            <h2 class="mt-1 text-lg font-bold text-slate-900">
+                                Staff Profile
+                            </h2>
+                        </div>
+
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5 flex items-center gap-4">
+
+                        <div id="staff-avatar" class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-slate-200 text-xl font-bold text-slate-500">
+                            DM
+                        </div>
+
+                        <div class="min-w-0">
+                            <p id="staff-profile-name" class="truncate font-semibold text-slate-900">
+                                Dr Munene
+                            </p>
+
+                            <p id="staff-number" class="mt-1 text-sm text-slate-500">
+                                Staff No: lec234
+                            </p>
+
+                            <p id="staff-department" class="mt-1 text-sm text-slate-500">
+                                Computer Science
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <p class="mt-4 text-sm font-medium text-blue-600 group-hover:underline">
+                        View profile →
+                    </p>
+
+                </a>
+
+
+                <!-- 2. Task View -->
+                <a id="task-view-card" href="/src/teachers/taskview.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+
+                    <div class="flex items-start justify-between">
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-amber-600">
+                                Tasks
+                            </p>
+
+                            <h2 class="mt-1 text-lg font-bold text-slate-900">
+                                Task View
+                            </h2>
+                        </div>
+
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-100 text-amber-600">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5 space-y-3">
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-500">Total Classes</span>
+                            <span id="total-classes" class="font-bold text-slate-900">5</span>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-500">Total Units</span>
+                            <span id="total-units" class="font-bold text-slate-900">4</span>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-500">Pending Tasks</span>
+                            <span id="pending-tasks" class="rounded-full bg-red-100 px-2.5 py-1 text-xs font-semibold text-red-600">3</span>
+                        </div>
+
+                    </div>
+
+                    <p class="mt-4 text-sm font-medium text-blue-600 group-hover:underline">
+                        View tasks →
+                    </p>
+
+                </a>
+
+
+                <!-- 3. Teaching Timetable -->
+                <a id="teaching-timetable-card" href="/src/teachers/teachingtimetable.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+
+                    <div class="flex items-start justify-between">
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-green-600">
+                                Schedule
+                            </p>
+
+                            <h2 class="mt-1 text-lg font-bold text-slate-900">
+                                Teaching Timetable
+                            </h2>
+                        </div>
+
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-600">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5">
+
+                        <span id="time-table-status" class="inline-flex rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+                            Today's Schedule
+                        </span>
+
+                        <p id="today-class" class="mt-3 font-semibold text-slate-900">
+                            Unit: CIT200
+                        </p>
+
+                        <p id="class-time" class="mt-1 text-sm text-slate-500">
+                            Today · 11:00 AM · Room 204
+                        </p>
+
+                    </div>
+
+                    <p class="mt-4 text-sm font-medium text-blue-600 group-hover:underline">
+                        View timetable →
+                    </p>
+
+                </a>
+
+
+                <!-- 4. Student Records -->
+                <a id="student-records-card" href="/src/teachers/studentrecords.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+
+                    <div class="flex items-start justify-between">
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-purple-600">
+                                Students
+                            </p>
+
+                            <h2 class="mt-1 text-lg font-bold text-slate-900">
+                                Student Records
+                            </h2>
+                        </div>
+
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-100 text-purple-600">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5 space-y-3">
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-500">Students</span>
+                            <span id="total-students" class="font-bold text-slate-900">126</span>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-500">Marks Pending</span>
+                            <span id="marks-pending" class="rounded-full bg-orange-100 px-2.5 py-1 text-xs font-semibold text-orange-600">18</span>
+                        </div>
+
+                    </div>
+
+                    <p class="mt-4 text-sm font-medium text-blue-600 group-hover:underline">
+                        Manage students →
+                    </p>
+
+                </a>
+
+
+                <!-- 5. Attendance -->
+                <a id="attendance-card" href="/src/teachers/attendance.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+
+                    <div class="flex items-start justify-between">
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-cyan-600">
+                                Attendance
+                            </p>
+
+                            <h2 class="mt-1 text-lg font-bold text-slate-900">
+                                Attendance
+                            </h2>
+                        </div>
+
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-100 text-cyan-600">
+                            <i class="fa-solid fa-clipboard-user"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5">
+
+                        <p class="text-sm text-slate-500">
+                            Today's Attendance
+                        </p>
+
+                        <p id="attendance-rate" class="mt-1 text-2xl font-bold text-slate-900">
+                            92%
+                        </p>
+
+                        <p id="attendance-status" class="mt-1 text-sm text-green-600">
+                            Attendance is up to date
+                        </p>
+
+                    </div>
+
+                    <p class="mt-4 text-sm font-medium text-blue-600 group-hover:underline">
+                        Record attendance →
+                    </p>
+
+                </a>
+
+
+                <!-- 6. Assignments -->
+                <a id="assignments-card" href="/src/teachers/assignments.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+
+                    <div class="flex items-start justify-between">
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-pink-600">
+                                Coursework
+                            </p>
+
+                            <h2 class="mt-1 text-lg font-bold text-slate-900">
+                                Assignments
+                            </h2>
+                        </div>
+
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-pink-100 text-pink-600">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5 space-y-3">
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-500">Active</span>
+                            <span id="active-assignments" class="font-bold text-slate-900">4</span>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-500">Submissions</span>
+                            <span id="assignment-submissions" class="font-bold text-slate-900">98</span>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-500">To Mark</span>
+                            <span id="assignments-to-mark" class="rounded-full bg-orange-100 px-2.5 py-1 text-xs font-semibold text-orange-600">21</span>
+                        </div>
+
+                    </div>
+
+                    <p class="mt-4 text-sm font-medium text-blue-600 group-hover:underline">
+                        Manage assignments →
+                    </p>
+
+                </a>
+
+
+                <!-- 7. Staff Activities -->
+                <a id="staff-activities-card" href="/src/teachers/staffactivity.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+
+                    <div class="flex items-start justify-between">
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-orange-600">
+                                Activities
+                            </p>
+
+                            <h2 class="mt-1 text-lg font-bold text-slate-900">
+                                Staff Activities
+                            </h2>
+                        </div>
+
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100 text-orange-600">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5">
+
+                        <p id="school-status" class="text-sm font-semibold text-slate-900">
+                            School Status: Holiday
+                        </p>
+
+                        <p id="staff-activity" class="mt-2 text-sm text-slate-500">
+                            Activity: General Meeting · 12:00 PM
+                        </p>
+
+                    </div>
+
+                    <p class="mt-4 text-sm font-medium text-blue-600 group-hover:underline">
+                        View activities →
+                    </p>
+
+                </a>
+
+
+                <!-- 8. Courses / Units -->
+                <a id="courses-card" href="/src/teachers/courses.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+
+                    <div class="flex items-start justify-between">
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600">
+                                Academic
+                            </p>
+
+                            <h2 class="mt-1 text-lg font-bold text-slate-900">
+                                My Courses
+                            </h2>
+                        </div>
+
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5 space-y-3">
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-500">Assigned Units</span>
+                            <span id="assigned-units" class="font-bold text-slate-900">4</span>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-slate-500">Current Semester</span>
+                            <span id="current-semester" class="font-semibold text-blue-600">Semester 2</span>
+                        </div>
+
+                    </div>
+
+                    <p class="mt-4 text-sm font-medium text-blue-600 group-hover:underline">
+                        View courses →
+                    </p>
+
+                </a>
+
+
+                <!-- 9. Messages -->
+                <a id="messages-card" href="/src/teachers/chartbox.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+
+                    <div class="flex items-start justify-between">
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-red-600">
+                                Communication
+                            </p>
+
+                            <h2 class="mt-1 text-lg font-bold text-slate-900">
+                                Messages
+                            </h2>
+                        </div>
+
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-red-100 text-red-600">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5">
+
+                        <p class="text-sm text-slate-500">
+                            New messages
+                        </p>
+
+                        <span id="total-staff-message" class="mt-2 inline-flex rounded-full bg-red-100 px-3 py-1 text-sm font-semibold text-red-600">
+                            10 new
+                        </span>
+
+                    </div>
+
+                    <p class="mt-4 text-sm font-medium text-blue-600 group-hover:underline">
+                        Open messages →
+                    </p>
+
+                </a>
+
+
+                <!-- 10. Announcements -->
+                <a id="announcements-card" href="/src/teachers/announcements.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+
+                    <div class="flex items-start justify-between">
+
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wider text-teal-600">
+                                Updates
+                            </p>
+
+                            <h2 class="mt-1 text-lg font-bold text-slate-900">
+                                Announcements
+                            </h2>
+                        </div>
+
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-100 text-teal-600">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-5">
+
+                        <p id="latest-announcement" class="font-semibold text-slate-900">
+                            Staff meeting scheduled
+                        </p>
+
+                        <p id="announcement-date" class="mt-1 text-sm text-slate-500">
+                            Today · 10:00 AM
+                        </p>
+
+                    </div>
+
+                    <p class="mt-4 text-sm font-medium text-blue-600 group-hover:underline">
+                        View announcements →
+                    </p>
+
+                </a>
+
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+       <footer id="dashboard-footer"></footer>
+
+    </div>
+</div>
+
+<script type="module" src="/src/js/main.js"></script>
+
+</body>
+</html>

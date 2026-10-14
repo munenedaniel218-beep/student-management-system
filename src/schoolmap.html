@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Map | Staff Portal</title>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800">
+
+    <div class="flex min-h-screen">
+        <div id="sidebar-container" class="lg:w-64 lg:shrink-0"></div>
+
+        <div class="min-w-0 flex-1">
+            <header id="dashboard-header"></header>
+
+            <main id="campus-map-page" class="p-4 md:p-6">
+                <div class="mx-auto max-w-7xl">
+
+                    <section id="campus-map-heading" class="mb-6">
+                        <p class="mb-1 text-sm font-medium text-blue-600">Staff Portal</p>
+                        <h1 class="text-2xl font-bold text-slate-900 md:text-3xl">Campus Map</h1>
+                        <p class="mt-1 text-sm text-slate-500">Find buildings and services around campus.</p>
+                    </section>
+
+                    <section id="campus-map-tools" class="mb-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                        <label for="campus-search" class="mb-2 block text-sm font-medium text-slate-700">Search campus locations</label>
+                        <input id="campus-search" type="search" placeholder="Search library, lecture halls, offices..." class="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+
+                        <div id="campus-location-list" class="mt-4 flex flex-wrap gap-2">
+                            <button type="button" class="rounded-full bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700">Library</button>
+                            <button type="button" class="rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700">Administration</button>
+                            <button type="button" class="rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700">Lecture Halls</button>
+                            <button type="button" class="rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700">Laboratories</button>
+                        </div>
+                    </section>
+
+                    <section id="campus-map-card" class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                        <div class="border-b border-slate-200 p-4">
+                            <h2 class="font-semibold text-slate-900">Explore Campus</h2>
+                            <p class="mt-1 text-sm text-slate-500">Select a marker to view a location.</p>
+                        </div>
+
+                        <div id="campus-map" class="h-[450px] w-full bg-slate-100 md:h-[600px]"></div>
+                    </section>
+
+                    <div id="campus-map-footer" class="mt-4 text-sm text-slate-500">
+                        Select a campus location to see its details.
+                    </div>
+
+                </div>
+            </main>
+
+            <div id="dashboard-footer"></div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/js/main.js"></script>
+    <script type="module" src="/src/js/schoolmap.js"></script>
+
+</body>
+</html>

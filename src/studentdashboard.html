@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.2.0/css/all.min.css">
+   
+    <title>Dashboard</title>
+  </head>    
+<body class="bg-gray-100"> 
+
+  <div id="dashboard-layout" class="min-h-screen lg:flex">
+
+ 
+ <!--aside-->
+ <div id="sidebar-container"></div>
+ <div id="dashboard-content" class="flex min-w-0 flex-1 flex-col">
+<!--header-->
+
+<header id="dashboard-header-inner"></header>
+<header id="dashboard-header"></header>
+<!-- Main content -->
+<main id="dashboard-main" class="flex-1 p-4 md:p-6">
+
+  <!-- Summary cards -->
+  <section id="summary-cards" class="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-3">
+
+    <!-- Card 1: Student profile -->
+   <a id="profile-card" href="/src/studentprofile.html"  class="flex w-full items-center gap-4 rounded-xl border border-slate-200 border-l-4 border-l-blue-600 bg-white p-4 shadow-sm transition hover:shadow-md">
+
+  <div id="profile-card-icon" class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+    <i class="fas fa-user text-xl"></i>
+  </div>
+
+  <div class="min-w-0">
+    <h3 class="text-base font-semibold text-slate-900">Student profile</h3>
+    <p id="profile-card-name" class="truncate text-sm text-slate-600">John Munene</p>
+    <p class="truncate text-sm text-slate-600">ID: <span id="profile-card-id"></span></p>
+    <p id="profile-card-course" class="truncate text-sm text-slate-600">BSc in Computer Science</p>
+  </div>
+
+</a>
+<!--course info-->
+<a id="courses-card" href="/src/courseinfo.html" class="flex w-full items-center gap-4 rounded-xl border border-slate-200 border-l-4 border-l-blue-600 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+
+  <div id="courses-card-icon" class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+    <i class="fas fa-book text-xl"></i>
+  </div>
+
+  <div class="min-w-0">
+    <h3 class="text-base font-semibold text-slate-900">Course Information</h3>
+    <p id="enrolled-courses"  class="text-sm text-slate-600">4 Enrolled Courses</p>
+    <p id="total-credits" class="text-sm text-slate-600">29 Credits</p>
+  </div>
+
+</a>
+ <!-- CARD 3: Grade Overview -->
+<a id="grades-card" href="/src/grades.html" class="block w-full rounded-xl border-l-4 border-pink-500 bg-blue-600 p-4 text-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+
+  <div>
+    <h3 class="text-base font-semibold">Grade Overview</h3>
+    <p class="mt-1 text-sm text-blue-100" id="current-gpa">Current GPA: 3.8</p>
+  </div>
+
+  <div class="mt-4 flex items-center gap-3">
+
+    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 font-bold text-white">A</div>
+
+    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-yellow-600 font-bold text-white">B+</div>
+
+    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-green-600 font-bold text-white">A-</div>
+
+    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600 font-bold text-white">B</div>
+
+  </div>
+
+</a>
+      <!-- CARD 4: Attendance -->
+<a id="attendance-card" href="/src/attendance.html" class="flex w-full items-center gap-4 rounded-xl border border-slate-200 border-l-4 border-l-teal-500 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+
+  <div id="attendance-percentage" class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-teal-100 text-lg font-bold text-teal-600">
+    92%
+  </div>
+
+  <div id="attendance-info" class="min-w-0">
+    <h3 id="attendance-title" class="text-base font-semibold text-slate-900">Attendance</h3>
+    <p id="attendance-description" class="text-sm text-slate-600">Overall Attendance Rate</p>
+  </div>
+
+</a>
+    <!-- CARD 5: Fees Statement -->
+<a id="fees-card" href="/src/fees.html" class="group flex w-full flex-col rounded-xl border-l-4 border-blue-500 bg-gradient-to-r from-orange-300 to-orange-600 p-4 text-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+
+  <div id="fees-info">
+    <h3 id="fees-title" class="text-base font-semibold">Fees Statement</h3>
+
+    <p id="fees-balance" class="mt-2 text-sm font-semibold">
+      Balance Due (ksh): 450.00
+    </p>
+  </div>
+
+  <button id="pay-fees-button" type="button" class="mt-4 w-fit rounded-lg bg-white px-4 py-2 font-bold text-orange-600 shadow transition hover:bg-gray-100">
+    Pay Now
+  </button>
+
+</a>
+  <!-- CARD 6: Exam Timetable -->
+<a id="exam-timetable-card" href="/src/examtimetable.html" class="flex w-full items-center gap-4 rounded-xl border-l-4 border-pink-700 bg-blue-600 p-4 text-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+
+  <div id="exam-icon" class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-blue-500">
+    <i class="fas fa-calendar-alt text-xl"></i>
+  </div>
+
+  <div id="exam-info" class="min-w-0">
+    <h3 id="exam-title" class="text-base font-semibold">Exam Timetable</h3>
+    <p id="exam-next" class="mt-1 text-sm text-blue-100">Next Exam</p>
+    <p id="exam-date" class="text-sm">April 25, 10:00 AM</p>
+    <p id="exam-room" class="text-sm">Room 200</p>
+  </div>
+
+</a>
+    <!-- CARD 7: Class Timetable -->
+<a id="class-timetable-card" href="/src/class-timetable.html" class="flex w-full items-center gap-4 rounded-xl border-l-4 border-pink-500 bg-blue-600 p-4 text-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+
+  <div id="class-icon" class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-blue-500">
+    <i class="fas fa-home text-xl"></i>
+  </div>
+
+  <div id="class-info" class="min-w-0">
+    <h3 id="class-title" class="text-base font-semibold">Class Timetable</h3>
+    <p id="class-total" class="mt-1 text-sm text-blue-100">Total Classes: 7</p>
+    <p id="class-today" class="text-sm">Today: Web-dev</p>
+    <p id="class-tomorrow" class="text-sm">Tomorrow: Cyb-sec</p>
+  </div>
+
+</a>
+    <!-- CARD 8: School Map -->
+<a id="school-map-card" href="/src/schoolmap.html" class="flex w-full items-center gap-4 rounded-xl border border-slate-200 border-l-4 border-l-teal-500 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+
+  <div id="school-map-icon" class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-teal-100 text-teal-600">
+    <i class="fas fa-map-marker-alt text-xl"></i>
+  </div>
+
+  <div id="school-map-info" class="min-w-0">
+    <h3 id="school-map-title" class="text-base font-semibold text-slate-900">School Map</h3>
+
+    <span id="school-map-button" class="mt-3 inline-block rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white transition hover:bg-teal-700">
+      View Map
+    </span>
+  </div>
+
+</a>
+<a href="/src/chartbox.html" class="flex w-full items-center gap-4 rounded-xl border border-slate-200 border-l-4 border-l-teal-500 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+  <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-teal-100 text-teal-600">
+  <i class="fa-solid fa-message" class="text-xl"></i>
+  </div>
+  <p class="">New message: 5 </p>
+  <p class="bg-green-300 rounded-2xl px-2 ">view</p>
+</a>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+ <div id="announcements-card" class="w-full rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+
+  <h3 id="announcements-title" class="text-base font-semibold text-slate-900">Announcements</h3>
+
+  <!-- Announcement 1 -->
+  <div id="announcement-1" class="mt-4 flex items-center gap-3">
+    <div id="announcement-1-icon" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+      <i class="fas fa-bullhorn"></i>
+    </div>
+
+    <div id="announcement-1-info" class="min-w-0">
+      <p id="announcement-1-title" class="text-sm font-semibold text-slate-800">New Semester Registration</p>
+      <p id="announcement-1-time" class="text-xs text-slate-500">Tomorrow at 5 AM</p>
+    </div>
+  </div>
+
+  <!-- Announcement 2 -->
+  <div id="announcement-2" class="mt-4 flex items-center gap-3">
+    <div id="announcement-2-icon" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600">
+      <i class="fas fa-graduation-cap"></i>
+    </div>
+
+    <div id="announcement-2-info" class="min-w-0">
+      <p id="announcement-2-title" class="text-sm font-semibold text-slate-800">Scholarship Applications Now Open!</p>
+      <p id="announcement-2-time" class="text-xs text-slate-500">Apply Today</p>
+    </div>
+  </div>
+
+  <!-- View All -->
+  <div id="announcements-footer" class="mt-4 border-t border-slate-100 pt-3">
+    <a id="announcements-view-all" href="/src/announcement.html" class="text-sm font-semibold text-blue-600 hover:underline">
+      View All
+    </a>
+  </div>
+
+</div>
+
+  <!-- BLOCK 3: Support Desk -->
+<div class="bg-white shadow rounded-lg p-4 w-full hover:shodow-lg ">
+
+  <h3 class="text-lg font-bold text-gray-800">Support Desk</h3>
+
+  <!-- Buttons Grid -->
+ <div id="quick-actions" class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+  <!-- Student Help -->
+  <a id="student-help-action" href="/src/support.html" class="flex  items-center gap-3 rounded-xl border-b-4 border-green-500 bg-blue-600 px-4 py-3 text-white shadow-sm transition hover:-translate-y-1 hover:bg-blue-700 hover:shadow-md">
+    <div id="student-help-icon" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-blue-600">
+      <i class="fas fa-info-circle"></i>
+    </div>
+    <span id="student-help-text" class="font-semibold">Student Help!</span>
+  </a>
+
+  <!-- Class Schedule -->
+  <a id="class-schedule-action" href="/src/class-timetable.html" class="flex items-center gap-3 rounded-xl border-b-4 border-green-500 bg-red-600 px-4 py-3 text-white shadow-sm transition hover:-translate-y-1 hover:bg-red-700 hover:shadow-md">
+    <div id="class-schedule-icon" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-red-600">
+      <i class="fas fa-calendar-alt"></i>
+    </div>
+    <span id="class-schedule-text" class="font-semibold">Class Schedule</span>
+  </a>
+
+  <!-- Fee Payment -->
+  <a id="fee-payment-action" href="/src/fees.html" class="flex items-center gap-3 rounded-xl border-b-4 border-green-500 bg-green-600 px-4 py-3 text-white shadow-sm transition hover:-translate-y-1 hover:bg-green-700 hover:shadow-md">
+    <div id="fee-payment-icon" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-green-600">
+      <i class="fas fa-dollar-sign"></i>
+    </div>
+    <span id="fee-payment-text" class="font-semibold">Fee Payment</span>
+  </a>
+
+  <!-- Student Clubs -->
+  <a id="student-clubs-action" href="/src/clubs.html" class="flex items-center gap-3 rounded-xl border-b-4 border-green-500 bg-purple-600 px-4 py-3 text-white shadow-sm transition hover:-translate-y-1 hover:bg-purple-700 hover:shadow-md">
+    <div id="student-clubs-icon" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-purple-600">
+      <i class="fas fa-users"></i>
+    </div>
+    <span id="student-clubs-text" class="font-semibold">Student Clubs</span>
+  </a>
+
+</div>
+
+</div>
+
+</section>
+    <footer class="bg-gray-900 mt-12 pt-10 pb-6 text-white">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
+
+                <!--col 1-->
+                <div class="">
+                    <h3 class="text-xl font-bold mb-3">Student Portal</h3>
+                    <p class="text-sm text-gray-300"> Your academic dashboard for classes, fees, announcements, and campus tools.</p>
+                </div>
+
+                <!--2 col-->
+                <!--quick links-->
+                <div>
+                    <h3 class="text-xl font-bold mb-3">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="/src/studentdashboard" class="hover:text-white">Dashboard</a></li>
+                        <li><a href="/src/class-timetable" class="hover:text-white">Class Schedule</a></li>
+                        <li><a href="/src/fees" class="hover:text-white">Fee Payment</a></li>
+                        <li><a href="/src/clubs" class="hover:text-white">Student Clubs</a></li>
+                    </ul>
+                </div>
+
+                <!--col 3-->
+                <div>
+                    <h3 class="text-xl font-bold mb-3">Support</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>Email: support@lowland.edu</li>
+                        <li>Phone: +254 798248521</li>
+                        <li><a href="#" class="hover:text-white">Help Center</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-700 mt-10 pt-4 text-center text-gray-400 text-sm">
+                © 2026 Student Portal. All Rights Reserved.
+            </div>
+        </footer>
+</main>
+  </div>
+  </div>
+
+<footer id="dashboard-footer"></footer>
+
+<script src="script.js"></script>
+<script src="/src/js/dashboard.js"></script>
+<script type="module" src="/src/js/main.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
+     <script type="module" src="/src/js/sidebar.js"></script>
+      </body>
+</html>

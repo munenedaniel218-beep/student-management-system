@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Announcements</title>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-800">
+    <div class="flex min-h-screen">
+     <div id="sidebar-container" class="lg:w-64 lg:shrink-0"></div>
+
+        <div class="min-w-0 flex-1">
+            <header id="dashboard-header"></header>
+
+            <main class="mx-auto max-w-7xl p-4 md:p-6">
+                <section class="mb-6">
+                    <p class="text-sm font-medium text-blue-600">Student Portal</p>
+                    <h1 class="mt-1 text-2xl font-bold text-slate-900 md:text-3xl">
+                        Announcements
+                    </h1>
+                    <p class="mt-2 text-sm text-slate-500">
+                        Stay updated with the latest news, events and notices.
+                    </p>
+                </section>
+
+                <section class="mb-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                    <label for="announcement-search" class="mb-2 block text-sm font-medium">
+                        Search announcements
+                    </label>
+
+                    <input
+                        id="announcement-search"
+                        type="search"
+                        placeholder="Search notices..."
+                        class="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                    />
+
+                    <div id="announcement-filters" class="mt-4 flex flex-wrap gap-2">
+                        <button data-category="All" class="rounded-full bg-blue-600 px-4 py-2 text-sm text-white">
+                            All
+                        </button>
+                        <button data-category="General" class="rounded-full bg-slate-100 px-4 py-2 text-sm">
+                            General
+                        </button>
+                        <button data-category="Exams" class="rounded-full bg-slate-100 px-4 py-2 text-sm">
+                            Exams
+                        </button>
+                        <button data-category="Events" class="rounded-full bg-slate-100 px-4 py-2 text-sm">
+                            Events
+                        </button>
+                        <button data-category="Fees" class="rounded-full bg-slate-100 px-4 py-2 text-sm">
+                            Fees
+                        </button>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="mb-4 flex items-center justify-between gap-3">
+                        <h2 class="text-lg font-semibold text-slate-900">
+                            Latest notices
+                        </h2>
+                        <span id="announcement-count" class="text-sm text-slate-500">
+                            3 announcements
+                        </span>
+                    </div>
+
+                    <div id="announcement-list" class="grid gap-4 md:grid-cols-2">
+                        <!-- JavaScript will display announcements here -->
+                    </div>
+                </section>
+            </main>
+
+            <div id="dashboard-footer"></div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/js/studentAnnouncements.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
+```

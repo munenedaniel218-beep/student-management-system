@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Results | Student Portal</title>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+<div id="dashboard-layout" class="min-h-screen lg:flex">
+
+    <div id="sidebar-container"></div>
+
+    <div id="dashboard-content" class="flex min-w-0 flex-1 flex-col">
+
+        <header id="dashboard-header"></header>
+
+        <main id="dashboard-main" class="flex-1 p-4 md:p-6 lg:p-8">
+
+            <!-- Page Header -->
+            <section id="results-header" class="mb-6">
+                <div class="rounded-2xl bg-gradient-to-r from-blue-700 to-blue-500 p-6 text-white shadow-sm">
+                    <p class="mb-1 text-sm font-medium text-blue-100">Academic Records</p>
+                    <h1 class="text-2xl font-bold md:text-3xl">Exam Results</h1>
+                    <p class="mt-2 max-w-2xl text-sm text-blue-100">
+                        Select a semester below to view your examination results, grades and current GPA.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Semester Selection -->
+            <section id="semester-selection" class="mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+                <div class="mb-4">
+                    <h2 class="text-lg font-bold text-slate-900">Select Semester</h2>
+                    <p class="text-sm text-slate-500">Choose the semester whose results you want to view.</p>
+                </div>
+
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-end">
+
+                    <div class="w-full sm:max-w-sm">
+                        <label for="semester-select" class="mb-2 block text-sm font-medium text-slate-700">
+                            Semester
+                        </label>
+
+                        <select id="semester-select" class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                            <option value="">Select semester</option>
+                            <option value="year1-sem1">Year 1 - Semester 1</option>
+                            <option value="year1-sem2">Year 1 - Semester 2</option>
+                            <option value="year2-sem1">Year 2 - Semester 1</option>
+                            <option value="year2-sem2">Year 2 - Semester 2</option>
+                            <option value="year3-sem1">Year 3 - Semester 1</option>
+                            <option value="year3-sem2">Year 3 - Semester 2</option>
+                            <option value="year4-sem1">Year 4 - Semester 1</option>
+                            <option value="year4-sem2">Year 4 - Semester 2</option>
+                        </select>
+                    </div>
+
+                    <button id="view-results-button" type="button" class="rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        View Results
+                    </button>
+
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="hidden">
+
+                <!-- Results Heading -->
+                <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+
+                    <div>
+                        <p class="text-sm font-medium text-blue-600">Examination Results</p>
+                        <h2 id="selected-semester-title" class="text-xl font-bold text-slate-900">
+                            Year 1 - Semester 1
+                        </h2>
+                    </div>
+
+                    <button id="download-results-button" type="button" class="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
+                        <i class="fa-solid fa-download"></i>
+                        Download Results
+                    </button>
+
+                </div>
+
+                <!-- Student Information -->
+                <div id="results-student-info" class="mb-5 grid grid-cols-1 gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:grid-cols-3">
+
+                    <div>
+                        <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Student Name</p>
+                        <p id="results-student-name" class="mt-1 font-semibold text-slate-900">John Munene</p>
+                    </div>
+
+                    <div>
+                        <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Student ID</p>
+                        <p id="results-student-id" class="mt-1 font-semibold text-slate-900">123456</p>
+                    </div>
+
+                    <div>
+                        <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Programme</p>
+                        <p id="results-student-programme" class="mt-1 font-semibold text-slate-900">BSc Computer Science</p>
+                    </div>
+
+                </div>
+
+                <!-- Results Table -->
+                <div id="results-table-card" class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+                    <div class="overflow-x-auto">
+
+                        <table id="results-table" class="w-full min-w-[650px] text-left text-sm">
+
+                            <thead class="bg-slate-100 text-xs uppercase tracking-wide text-slate-600">
+                                <tr>
+                                    <th class="px-5 py-4 font-semibold">Unit Code</th>
+                                    <th class="px-5 py-4 font-semibold">Unit Name</th>
+                                    <th class="px-5 py-4 text-center font-semibold">Marks</th>
+                                    <th class="px-5 py-4 text-center font-semibold">Grade</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="results-table-body" class="divide-y divide-slate-100">
+
+                                <tr id="result-csc101" class="hover:bg-slate-50">
+                                    <td class="px-5 py-4 font-medium text-slate-700">CSC 101</td>
+                                    <td class="px-5 py-4 text-slate-700">Introduction to Computing</td>
+                                    <td class="px-5 py-4 text-center font-semibold text-slate-900">78</td>
+                                    <td class="px-5 py-4 text-center">
+                                        <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-700">A</span>
+                                    </td>
+                                </tr>
+
+                                <tr id="result-csc102" class="hover:bg-slate-50">
+                                    <td class="px-5 py-4 font-medium text-slate-700">CSC 102</td>
+                                    <td class="px-5 py-4 text-slate-700">Programming Fundamentals</td>
+                                    <td class="px-5 py-4 text-center font-semibold text-slate-900">72</td>
+                                    <td class="px-5 py-4 text-center">
+                                        <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-700">A</span>
+                                    </td>
+                                </tr>
+
+                                <tr id="result-mat101" class="hover:bg-slate-50">
+                                    <td class="px-5 py-4 font-medium text-slate-700">MAT 101</td>
+                                    <td class="px-5 py-4 text-slate-700">Mathematics for Computing</td>
+                                    <td class="px-5 py-4 text-center font-semibold text-slate-900">68</td>
+                                    <td class="px-5 py-4 text-center">
+                                        <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700">B</span>
+                                    </td>
+                                </tr>
+
+                                <tr id="result-com101" class="hover:bg-slate-50">
+                                    <td class="px-5 py-4 font-medium text-slate-700">COM 101</td>
+                                    <td class="px-5 py-4 text-slate-700">Communication Skills</td>
+                                    <td class="px-5 py-4 text-center font-semibold text-slate-900">64</td>
+                                    <td class="px-5 py-4 text-center">
+                                        <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700">B</span>
+                                    </td>
+                                </tr>
+
+                                <tr id="result-cns101" class="hover:bg-slate-50">
+                                    <td class="px-5 py-4 font-medium text-slate-700">CNS 101</td>
+                                    <td class="px-5 py-4 text-slate-700">Computer Networks</td>
+                                    <td class="px-5 py-4 text-center font-semibold text-slate-900">59</td>
+                                    <td class="px-5 py-4 text-center">
+                                        <span class="rounded-full bg-yellow-100 px-3 py-1 text-xs font-bold text-yellow-700">C</span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <!-- GPA Summary -->
+                <div id="gpa-summary" class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
+
+                    <div id="semester-average-card" class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <p class="text-sm text-slate-500">Semester Average</p>
+                        <p id="semester-average" class="mt-2 text-2xl font-bold text-slate-900">68.2%</p>
+                    </div>
+
+                    <div id="current-gpa-card" class="rounded-2xl border border-blue-200 bg-blue-50 p-5 shadow-sm">
+                        <p class="text-sm text-blue-700">Current GPA</p>
+                        <p id="current-gpa" class="mt-2 text-2xl font-bold text-blue-700">3.52</p>
+                    </div>
+
+                    <div id="academic-status-card" class="rounded-2xl border border-green-200 bg-green-50 p-5 shadow-sm">
+                        <p class="text-sm text-green-700">Academic Status</p>
+                        <p id="academic-status" class="mt-2 text-2xl font-bold text-green-700">Good Standing</p>
+                    </div>
+
+                </div>
+
+                <!-- Notice -->
+                <div id="results-notice" class="mt-5 rounded-xl border border-blue-100 bg-blue-50 p-4 text-sm text-blue-700">
+                    <i class="fa-solid fa-circle-info mr-2"></i>
+                    Results shown above are for the selected semester. The GPA displayed is the student's current cumulative GPA.
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer id="dashboard-footer"></footer>
+
+    </div>
+
+</div>
+
+<script type="module" src="/src/js/main.js"></script>
+<script type="module" src="/src/js/main.js"></script>
+<script type="module" src="/src/js/exams.js"></script>
+
+</body>
+</html>
